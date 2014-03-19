@@ -1,4 +1,4 @@
 #!/bin/sh
 
-docker build -t quintenk/mongo .
-docker build -t quintenk/mongo:2.4.9 .
+docker build -t mongo .
+docker build -t mongo:2.4.9 .
