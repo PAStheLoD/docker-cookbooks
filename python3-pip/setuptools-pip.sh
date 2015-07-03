@@ -1,18 +1,18 @@
 #!/bin/bash
 
-## needed for pip and other basic packages (like Cython)
 
+echo 'deb http://archive.ubuntu.com/ubuntu/ vivid           main restricted universe multiverse' >  /etc/apt/sources.list
+echo 'deb http://archive.ubuntu.com/ubuntu/ vivid-backports main restricted universe multiverse' >> /etc/apt/sources.list
+echo 'deb http://archive.ubuntu.com/ubuntu/ vivid-updates   main restricted universe multiverse' >> /etc/apt/sources.list
+echo 'deb http://archive.ubuntu.com/ubuntu/ vivid-proposed  main restricted universe multiverse' >> /etc/apt/sources.list
+echo 'deb http://archive.ubuntu.com/ubuntu/ vivid-security  main restricted universe multiverse' >> /etc/apt/sources.list
 
-echo 'deb http://archive.ubuntu.com/ubuntu/ utopic-backports main restricted' >> /etc/apt/sources.list
-echo 'deb http://archive.ubuntu.com/ubuntu/ utopic-security multiverse'       >> /etc/apt/sources.list
-
-sed -ri 's/^deb-src/# deb-src/g' /etc/apt/sources.list
 
 export DEBIAN_FRONTEND=noninteractive
 
 apt-get update
 
-apt-get -y install python3.4 python3.4-dev wget zlib1g-dev libssl-dev libexpat1-dev libffi-dev pkg-config libreadline-dev libsqlite3-dev libbz2-dev libncursesw5-dev 
+apt-get -y install python3.4 python3.4-dev wget zlib1g-dev libssl-dev libexpat1-dev libffi-dev pkg-config libreadline-dev libsqlite3-dev libbz2-dev libncursesw5-dev
 
 apt-get clean
 
