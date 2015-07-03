@@ -16,10 +16,10 @@ apt-get -y install python3.4 python3.4-dev wget zlib1g-dev libssl-dev libexpat1-
 
 apt-get clean
 
-wget -O- https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py | python3.4
+wget -q -O- https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py | python3.4
 rm -f setuptools-*.*.*.tar.gz
 rm -f setuptools-*.zip
-wget -O- https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python3.4
+wget -q -O- https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python3.4
 
 ln -s /usr/bin/vim.tiny /usr/bin/vim
 
