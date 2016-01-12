@@ -1,6 +1,7 @@
-FROM ubuntu:vivid
+FROM ubuntu:xenial
 
 # vivid = 15.04
+# xenial = 16.04
 ## or import it as: docker import http://cdimage.ubuntu.com/ubuntu-core/daily/current/vivid-core-amd64.tar.gz
 
 
