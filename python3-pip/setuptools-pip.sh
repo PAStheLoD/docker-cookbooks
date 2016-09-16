@@ -19,7 +19,7 @@ apt-get clean
 wget -q -O- https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py | python3.5
 rm -f setuptools-*.*.*.tar.gz
 rm -f setuptools-*.zip
-wget -q -O- https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python3.5
+wget -q -O- https://bootstrap.pypa.io/get-pip.py | python3.5
 
 ln -s /usr/bin/vim.tiny /usr/bin/vim
 
