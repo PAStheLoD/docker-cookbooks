@@ -5,7 +5,7 @@ FROM ubuntu:16.10
 ENV container docker
 
 COPY setup.sh /setup.sh
-# COPY setup /sbin/
+RUN /bin/bash setup.sh
 
 CMD ["/sbin/init"]
 
