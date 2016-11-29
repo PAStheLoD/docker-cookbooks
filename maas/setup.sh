@@ -9,5 +9,8 @@ find /etc/systemd/system \
 
 systemctl set-default multi-user.target
 
+export DEBIAN_FRONTEND=noninteractive
+
+
 apt-get -qq update
 apt-get install -y sudo maas
