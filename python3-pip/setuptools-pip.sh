@@ -1,12 +1,12 @@
 #!/bin/bash
 
-
-echo 'deb http://archive.ubuntu.com/ubuntu/ xenial           main restricted universe multiverse' >  /etc/apt/sources.list
-echo 'deb http://archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse' >> /etc/apt/sources.list
-echo 'deb http://archive.ubuntu.com/ubuntu/ xenial-updates   main restricted universe multiverse' >> /etc/apt/sources.list
-echo 'deb http://archive.ubuntu.com/ubuntu/ xenial-proposed  main restricted universe multiverse' >> /etc/apt/sources.list
-echo 'deb http://archive.ubuntu.com/ubuntu/ xenial-security  main restricted universe multiverse' >> /etc/apt/sources.list
-
+if [[ $(grep yakkety /etc/apt/sources.list | wc -l) = 0 ]] ; then
+  echo 'deb http://archive.ubuntu.com/ubuntu/ yakkety           main restricted universe multiverse' >>  /etc/apt/sources.list
+  echo 'deb http://archive.ubuntu.com/ubuntu/ yakkety-backports main restricted universe multiverse' >> /etc/apt/sources.list
+  echo 'deb http://archive.ubuntu.com/ubuntu/ yakkety-updates   main restricted universe multiverse' >> /etc/apt/sources.list
+  echo 'deb http://archive.ubuntu.com/ubuntu/ yakkety-proposed  main restricted universe multiverse' >> /etc/apt/sources.list
+  echo 'deb http://archive.ubuntu.com/ubuntu/ yakkety-security  main restricted universe multiverse' >> /etc/apt/sources.list
+fi
 
 export DEBIAN_FRONTEND=noninteractive
 
