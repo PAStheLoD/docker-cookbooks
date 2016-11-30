@@ -1,8 +1,7 @@
-FROM ubuntu:xenial
+FROM ubuntu:yakkety
 
-# vivid = 15.04
-# xenial = 16.04
-## or import it as: docker import http://cdimage.ubuntu.com/ubuntu-core/daily/current/vivid-core-amd64.tar.gz
+# yakkety = 16.10
+## or import it as: docker import http://cdimage.ubuntu.com/ubuntu-core/daily/current/yakkety-core-amd64.tar.gz
 
 
 ADD setuptools-pip.sh /setuptools-pip.sh
