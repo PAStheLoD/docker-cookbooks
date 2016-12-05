@@ -14,6 +14,8 @@ find /etc/systemd/system \
 
 systemctl set-default multi-user.target
 
+echo 'ForwardToConsole=yes' >> /etc/systemd/journald.conf
+
 apt-get install -y maas
 apt-get clean
 
@@ -21,6 +23,17 @@ systemctl stop postgresql
 
 mkdir -p /___init_data
 mv /var/lib/postgresql /___init_data/
+
+
+echo 'IFS=\n
+for i in $(find /___init_data/postgresql/ -mindepth 1 -maxdepth 1 -type d) ; do
+    [[ ! -e "/var/lib/postgresql/$(basename $i)" ]] && mv "$i" /var/lib/postgresql/
+done
+
+chown -R postgres /var/lib/postgresql
+rmdir /___init_data/postgresql
+rmdir --ignore-fail-on-non-empty /___init_data
+' > /lib/postgresql-prepare_db.sh
 
 echo '
 [Install]
@@ -33,7 +46,7 @@ Type=oneshot
 ConditionPathIsMountPoint=/var/lib/postgresql
 ConditionPathExists=/___init_data/postgresql
 ConditionDirectoryNotEmpty=!/var/lib/postgresql
-ExecStart=/bin/bash -c "IFS=\n ; for i in $(find /___init_data/postgresql/ -mindepth 1 -maxdepth 1 -type d) ; do [[ ! -e "/var/lib/postgresql/$(basename $i)" ]] && mv "$i" /var/lib/postgresql/ ; done ; chown -R postgres /var/lib/postgresql ; rmdir /___init_data/postgresql ; rmdir --ignore-fail-on-non-empty /___init_data"
+ExecStart=/bin/bash -x /lib/postgresql-prepare_db.sh
 ' > /etc/systemd/system/postgresql-prepare_db.service
 
 systemctl enable postgresql-prepare_db.service
