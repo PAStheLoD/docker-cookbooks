@@ -33,7 +33,7 @@ Type=oneshot
 ConditionPathIsMountPoint=/var/lib/postgresql
 ConditionPathExists=/___init_data/postgresql
 ConditionDirectoryNotEmpty=!/var/lib/postgresql
-ExecStart=/bin/bash -c "mv /___init_data/postgresql/* /var/lib/postgresql/ ; chown -R postgres /var/lib/postgresql ; rmdir --ignore-fail-on-non-empty /___init_data"
+ExecStart=/bin/bash -c "IFS=\n ; for i in $(find /___init_data/postgresql/ -mindepth 1 -maxdepth 1 -type d) ; do [[ ! -e "/var/lib/postgresql/$(basename $i)" ]] && mv "$i" /var/lib/postgresql/ ; done ; chown -R postgres /var/lib/postgresql ; rmdir /___init_data/postgresql ; rmdir --ignore-fail-on-non-empty /___init_data"
 ' > /etc/systemd/system/postgresql-prepare_db.service
 
 systemctl enable postgresql-prepare_db.service
