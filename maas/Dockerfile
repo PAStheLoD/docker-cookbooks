@@ -7,7 +7,7 @@ ENV container docker
 COPY setup.sh /setup.sh
 RUN /bin/bash setup.sh
 
-CMD ["/sbin/init"]
+CMD ["/lib/systemd/systemd"]
 
 
 #    maas createadmin --username=root --password=welcome1 --email=foo@foo.com
