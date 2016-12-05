@@ -1,3 +1,8 @@
+export DEBIAN_FRONTEND=noninteractive
+
+apt-get -qq update
+apt-get install -y sudo maas systemd
+
 # Don't start any optional services except for the few we need.
 find /etc/systemd/system \
          /lib/systemd/system \
@@ -9,11 +14,6 @@ find /etc/systemd/system \
 
 systemctl set-default multi-user.target
 
-export DEBIAN_FRONTEND=noninteractive
-
-
-apt-get -qq update
-apt-get install -y sudo maas
 
 systemctl stop postgresql
 
