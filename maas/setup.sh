@@ -25,7 +25,8 @@ mkdir -p /___init_data
 mv /var/lib/postgresql /___init_data/
 
 
-echo 'IFS=\n
+echo 'IFS="
+"
 for i in $(find /___init_data/postgresql/ -mindepth 1 -maxdepth 1 -type d) ; do
     [[ ! -e "/var/lib/postgresql/$(basename $i)" ]] && mv "$i" /var/lib/postgresql/
 done
@@ -33,20 +34,31 @@ done
 chown -R postgres /var/lib/postgresql
 rmdir /___init_data/postgresql
 rmdir --ignore-fail-on-non-empty /___init_data
+
+systemctl unmask postgresql.service
+systemctl enable postgresql.service
+systemctl start postgresql.service
 ' > /lib/postgresql-prepare_db.sh
 
 echo '
 [Install]
-RequiredBy=postgresql.service
+RequiredBy=multi-user.target
 
-[Service]
+[Unit]
 After=local-fs.target
 Before=postgresql.service
-Type=oneshot
+Before=postgresql@.service
+
 ConditionPathIsMountPoint=/var/lib/postgresql
 ConditionPathExists=/___init_data/postgresql
 ConditionDirectoryNotEmpty=!/var/lib/postgresql
+
+[Service]
+Type=oneshot
 ExecStart=/bin/bash -x /lib/postgresql-prepare_db.sh
 ' > /etc/systemd/system/postgresql-prepare_db.service
 
 systemctl enable postgresql-prepare_db.service
+systemctl disable postgresql.service
+systemctl mask postgresql.service
+
