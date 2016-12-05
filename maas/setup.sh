@@ -25,8 +25,10 @@ echo '
 After=local-fs.target
 Before=postgresql.service
 Type=oneshot
+ConditionPathIsMountPoint=/var/lib/postgresql
 ConditionPathExists=/___init_data/postgresql
-ExecStart=/bin/bash -c "mkdir -p /var/lib/postgresql ; mv /___init_data/postgresql/* /var/lib/postgresql/ ; chown -R postgres /var/lib/postgresql ; rmdir --ignore-fail-on-non-empty /___init_data"
+ConditionDirectoryNotEmpty=!/var/lib/postgresql
+ExecStart=/bin/bash -c "mv /___init_data/postgresql/* /var/lib/postgresql/ ; chown -R postgres /var/lib/postgresql ; rmdir --ignore-fail-on-non-empty /___init_data"
 ' > /etc/systemd/system/postgresql-prepare_db.service
 
 systemctl enable postgresql-prepare_db.service
