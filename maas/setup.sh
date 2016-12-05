@@ -21,6 +21,9 @@ mkdir -p /___init_data
 mv /var/lib/postgresql /___init_data/
 
 echo '
+[Install]
+RequiredBy=postgresql.service
+
 [Service]
 After=local-fs.target
 Before=postgresql.service
