@@ -15,4 +15,4 @@ apt-get update
 
 apt-get install nginx-extras -y
 
-RUN apt-get clean
+apt-get clean
