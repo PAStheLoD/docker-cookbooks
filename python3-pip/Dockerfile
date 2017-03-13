@@ -1,7 +1,7 @@
-FROM ubuntu:yakkety
+FROM ubuntu:zesty
 
-# yakkety = 16.10
-## or import it as: docker import http://cdimage.ubuntu.com/ubuntu-core/daily/current/yakkety-core-amd64.tar.gz
+# zesty = 17.04
+## or import it as: docker import http://cdimage.ubuntu.com/ubuntu-core/daily/current/zesty-core-amd64.tar.gz (or 
 
 
 ADD setuptools-pip.sh /setuptools-pip.sh
