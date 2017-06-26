@@ -13,3 +13,5 @@ echo 'deb https://deb.nodesource.com/node_8.x zesty main' > /etc/apt/sources.lis
 apt-get update -qq
 apt-get install -y nodejs
 apt-get clean
+
+npm i -g yarn
