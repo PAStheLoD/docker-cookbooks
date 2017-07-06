@@ -9,9 +9,9 @@ export DEBIAN_FRONTEND=noninteractive
 
 dpkg --add-architecture armhf
 
-apt update -qq
+apt-get update -qq
 
-apt install -y libssl-dev:armhf g++-arm-linux-gnueabihf curl build-essential pkg-config libsystemd-dev:armhf
+apt-get install -y libssl-dev:armhf g++-arm-linux-gnueabihf curl build-essential pkg-config libsystemd-dev:armhf
 
 curl https://sh.rustup.rs -sSf | bash -s -- -y
 
