@@ -1,9 +1,6 @@
 #!/bin/bash
 
-mv /tmp/.cargo /root
-
 cd /root
-
 
 export DEBIAN_FRONTEND=noninteractive
 
