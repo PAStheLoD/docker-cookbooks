@@ -17,7 +17,7 @@ dpkg --add-architecture armhf
 
 apt-get update -qq
 
-apt-get install -y libssl-dev:armhf g++-5-arm-linux-gnueabihf build-essential pkg-config libsystemd-dev:armhf
+apt-get install -y libssl-dev:armhf g++-arm-linux-gnueabihf build-essential pkg-config libsystemd-dev:armhf
 
 curl https://sh.rustup.rs -sSf | bash -s -- -y
 
