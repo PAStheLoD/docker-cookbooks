@@ -8,7 +8,7 @@ dpkg --add-architecture armhf
 
 apt-get update -qq
 
-apt-get install -y libssl1.0-dev:armhf g++-arm-linux-gnueabihf curl build-essential pkg-config libsystemd-dev:armhf
+apt-get install -y libssl1.0-dev:armhf g++-arm-linux-gnueabihf curl build-essential pkg-config libsystemd-dev:armhf wget
 
 curl https://sh.rustup.rs -sSf | bash -s -- -y
 
@@ -18,12 +18,7 @@ linker = "arm-linux-gnueabihf-gcc"
 EOF
 
 # install ssl with PIC support for static linking
-wget -O /tmp/openssl.tgz https://www.openssl.org/source/openssl-1.0.2l.tar.gz
-tar -zxf /tmp/openssl.tgz
-cd openssl-1.0.2l
-./config -fPIC --prefix=/usr/local --openssldir=/usr/local/ssl
-make
-make install
+wget -O /tmp/openssl.tgz https://www.openssl.org/source/openssl-1.0.2l.tar.gz && tar -zxf /tmp/openssl.tgz && cd openssl-1.0.2l && ./config -fPIC --prefix=/usr/local --openssldir=/usr/local/ssl && make && make install && cd ..
 
 export PATH=$PATH:/root/.cargo/bin
 rustup target add armv7-unknown-linux-gnueabihf
