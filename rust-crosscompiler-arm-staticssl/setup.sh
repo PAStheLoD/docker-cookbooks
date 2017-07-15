@@ -28,7 +28,7 @@ wget -O /tmp/openssl.tgz https://www.openssl.org/source/openssl-1.0.2l.tar.gz
 tar -zxf /tmp/openssl.tgz
 cd openssl-1.0.2l
 
-./config -fPIC --prefix=/root/opensslArm
+./config linux-armv4 -fPIC --prefix=/root/opensslArm
 #--openssldir=/usr/local/ssl - is this needed?
 
 export cross=arm-linux-gnueabihf-
