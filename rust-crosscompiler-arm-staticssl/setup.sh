@@ -28,10 +28,11 @@ wget -O /tmp/openssl.tgz https://www.openssl.org/source/openssl-1.0.2l.tar.gz
 tar -zxf /tmp/openssl.tgz
 cd openssl-1.0.2l
 
-./config linux-armv4 -fPIC --prefix=/root/opensslArm
+export cross=arm-linux-gnueabihf-
+
+./config linux-generic32 --cross-compile-prefix=${cross} -fPIC --prefix=/root/opensslArm --openssldir=/root/opensslArm/openssl
 #--openssldir=/usr/local/ssl - is this needed?
 
-export cross=arm-linux-gnueabihf-
 make CC="${cross}gcc" AR="${cross}ar r" RANLIB="${cross}ranlib"
 make install
 
