@@ -29,7 +29,7 @@ cd openssl-1.0.2l
 ./config -fPIC --prefix=/root/opensslArm
 #--openssldir=/usr/local/ssl - is this needed?
 
-export cross=arm-linux-gnueabi-
+export cross=arm-linux-gnueabihf-
 make CC="${cross}gcc" AR="${cross}ar r" RANLIB="${cross}ranlib"
 make install
 
