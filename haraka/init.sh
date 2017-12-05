@@ -12,12 +12,17 @@ if [[ ${relay_from_cidr} != "" ]] ; then
 fi
 
 if [[ "${auth_user}" != "" ]] && [[ "${auth_password}" != "" ]] ; then
+    echo "auth/flat_file" >> config/plugins
+
     echo "
     [core]
     methods=PLAIN,LOGIN,CRAM-MD5
     [users]
     ${auth_user}=${auth_password}
     " > config/auth_flat_file.ini
+
+    echo "Enabled auth with flat file (auth/flat_file plugin)"
+
 else
     if [[ "${auth_user}" != "" ]] && [[ "${auth_password}" = "" ]] ; then
         echo "ERROR: Auth settings make no sense, auth_password env var missing"
