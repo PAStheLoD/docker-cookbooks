@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $(grep zesty /etc/apt/sources.list | wc -l) = 0 ]] ; then
+if [[ $(grep artful /etc/apt/sources.list | wc -l) = 0 ]] ; then
     echo 'deb http://archive.ubuntu.com/ubuntu/ artful           main restricted universe multiverse' >>  /etc/apt/sources.list
     echo 'deb http://archive.ubuntu.com/ubuntu/ artful-backports main restricted universe multiverse' >> /etc/apt/sources.list
     echo 'deb http://archive.ubuntu.com/ubuntu/ artful-updates   main restricted universe multiverse' >> /etc/apt/sources.list
