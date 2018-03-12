@@ -13,5 +13,6 @@ RUN cd /usr/local/haraka && yarn
 
 STOPSIGNAL SIGINT
 EXPOSE 25
+EXPOSE 587
 ADD init.sh /init.sh
 CMD ["/init.sh"]
