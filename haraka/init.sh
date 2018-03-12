@@ -70,6 +70,7 @@ queue/smtp_forward
 max_unrecognized_commands
 " >> config/plugins
 
+grep -q 'listen=0.0.0.0:25' config/smtp.ini || echo 'listen=0.0.0.0:25,0.0.0.0:587' >> config/smtp.ini
 
 exec haraka -c /usr/local/haraka 2>&1
 
