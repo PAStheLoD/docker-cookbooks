@@ -1,7 +1,7 @@
-FROM ubuntu:artful
+FROM ubuntu:bionic
 
-# artful = 17.10
-## or import it as: docker import http://cdimage.ubuntu.com/ubuntu-core/daily/current/artful-core-amd64.tar.gz 
+# artful = 18.04
+## or import it as: docker import http://cdimage.ubuntu.com/ubuntu-core/daily/current/bionic-core-amd64.tar.gz 
 
 
 ADD setup.sh /setup.sh
