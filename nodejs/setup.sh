@@ -8,7 +8,7 @@ apt-get install -y wget ca-certificates apt-transport-https --no-install-recomme
 
 wget -q -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 
-echo 'deb https://deb.nodesource.com/node_10.x bionic main' > /etc/apt/sources.list.d/node.list
+echo 'deb https://deb.nodesource.com/node_11.x cosmic main' > /etc/apt/sources.list.d/node.list
 
 apt-get update -qq
 apt-get install -y nodejs

@@ -6,7 +6,7 @@ apt-get install -y wget
 
 wget -qO - http://www.dotdeb.org/dotdeb.gpg | apt-key add -
 
-echo "deb http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list
+echo "deb http://packages.dotdeb.org stretch all" > /etc/apt/sources.list.d/dotdeb.list
 
 apt-get update
 
