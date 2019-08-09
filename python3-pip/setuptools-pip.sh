@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if [[ $(grep artful /etc/apt/sources.list | wc -l) = 0 ]] ; then
-    echo 'deb http://archive.ubuntu.com/ubuntu/  bionic           main restricted universe multiverse' >  /etc/apt/sources.list
-    echo 'deb http://archive.ubuntu.com/ubuntu/  bionic-backports main restricted universe multiverse' >> /etc/apt/sources.list
-    echo 'deb http://archive.ubuntu.com/ubuntu/  bionic-updates   main restricted universe multiverse' >> /etc/apt/sources.list
-    echo 'deb http://archive.ubuntu.com/ubuntu/  bionic-proposed  main restricted universe multiverse' >> /etc/apt/sources.list
-    echo 'deb http://security.ubuntu.com/ubuntu/ bionic-security  main restricted universe multiverse' >> /etc/apt/sources.list
+    echo 'deb http://archive.ubuntu.com/ubuntu/  disco           main restricted universe multiverse' >  /etc/apt/sources.list
+    echo 'deb http://archive.ubuntu.com/ubuntu/  disco-backports main restricted universe multiverse' >> /etc/apt/sources.list
+    echo 'deb http://archive.ubuntu.com/ubuntu/  disco-updates   main restricted universe multiverse' >> /etc/apt/sources.list
+    echo 'deb http://archive.ubuntu.com/ubuntu/  disco-proposed  main restricted universe multiverse' >> /etc/apt/sources.list
+    echo 'deb http://security.ubuntu.com/ubuntu/ disco-security  main restricted universe multiverse' >> /etc/apt/sources.list
 fi
 
 export DEBIAN_FRONTEND=noninteractive

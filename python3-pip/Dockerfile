@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:disco
 
 # zesty = 17.04
 ## or import it as: docker import http://cdimage.ubuntu.com/ubuntu-core/daily/current/zesty-core-amd64.tar.gz (or 
