@@ -2,11 +2,27 @@
 
 cd /usr/local/haraka
 
+if [[ ${redis:=} != "" ]] ; then
+	echo "redis" > config/plugins
+	echo "Enabled Redis plugin"
+fi
+if [[ ${redis_host:=} != "" ]] ; then
+	echo '[server]'          > config/redis.ini
+	echo host=${redis_host} >> config/redis.ini
+	echo "Using Redis server: ${redis_host}"
+
+	if [[ ${redis_port:=} != "" ]] ; then
+		echo port=${redis_port} >> config/redis.ini
+		echo "Using Redis port: ${redis_port}"
+	fi
+fi
+
+
 echo "
 access
 dnsbl
 helo.checks
-" > config/plugins
+" >> config/plugins
 
 if [[ ${tls_key} != "" ]] && [[ ${tls_cert} != "" ]] ; then
     echo "tls" >> config/plugins
@@ -15,10 +31,21 @@ if [[ ${tls_key} != "" ]] && [[ ${tls_cert} != "" ]] ; then
     key=$tls_key
     cert=$tls_cert
 
-    disable_for_failed_hosts=true
-
     " > config/tls.ini
     echo "Enabled TLS with key=$tls_key and cert=$tls_cert"
+
+
+    if [[ ${redis} != "" ]] ; then
+
+    echo "
+    [redis]
+    disable_for_failed_hosts=true
+    " >> config/tls.ini
+    echo "Enable TLS to plaintext fallback"
+
+    fi
+
+
 fi
 
 if [[ ${relay_from_cidr} != "" ]] ; then
@@ -79,6 +106,7 @@ hostname=$(hostname)
 
 echo $hostname > config/me
 echo $hostname >> config/host_list
+
 
 
 exec haraka -c /usr/local/haraka 2>&1
