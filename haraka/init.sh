@@ -14,6 +14,9 @@ if [[ ${tls_key} != "" ]] && [[ ${tls_cert} != "" ]] ; then
     echo "
     key=$tls_key
     cert=$tls_cert
+
+    disable_for_failed_hosts=true
+
     " > config/tls.ini
     echo "Enabled TLS with key=$tls_key and cert=$tls_cert"
 fi
@@ -67,10 +70,16 @@ mail_from.is_resolvable
 rcpt_to.in_host_list
 data.headers
 queue/smtp_forward
-max_unrecognized_commands
 " >> config/plugins
 
 grep -q 'listen=0.0.0.0:25' config/smtp.ini || echo 'listen=0.0.0.0:25,0.0.0.0:587' >> config/smtp.ini
+grep -q -E '^nodes=' config/smtp.ini || echo 'nodes=1' >> config/smtp.ini
+
+hostname=$(hostname)
+
+echo $hostname > config/me
+echo $hostname >> config/host_list
+
 
 exec haraka -c /usr/local/haraka 2>&1
 
