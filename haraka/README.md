@@ -1,20 +1,12 @@
 
 
-# how to run it?
-
-
-Create a run-haraka.sh
-Create a docker network `default1`
-Run run-haraka.sh!
-
-
 ```
 #!/bin/bash
 
 set -e
 
 
-# /opt/staging/venv/bin/certbot certonly -d raiker.end.systems --standalone
+# /opt/staging/venv/bin/certbot certonly -d NEVER.FORGET.SYSTEMS --standalone
 
 docker inspect redis -f '{{ .State.Running }}' &>/dev/null && { docker stop redis ;  docker rm -f redis ; }
 
@@ -35,6 +27,10 @@ maxmemory 10485760
 tcp-backlog 100
 dir /data
 dbfilename dump.rdb
+
+# for minimal security (because we run --net=host)
+bind 127.0.0.1
+
 ' > /opt/redis/redis.conf
 
 
@@ -52,9 +48,7 @@ docker inspect haraka -f '{{ .State.Running }}' &>/dev/null && { docker stop har
 docker run --name haraka  \
            --restart always \
            --log-driver journald \
-           --hostname DONT.FORGET.THIS.EITHER \
-           --network default1 \
-           -p 127.0.0.1:25:25 \
+           --hostname NEVER.FORGET.SYSTEMS \
            --detach \
            -e debug=on \
            -e redis=on \
@@ -63,8 +57,8 @@ docker run --name haraka  \
            -e auth_user=test \
            -e auth_password='very3333333secrtPASS' \
            -v /etc/letsencrypt:/etc/letsencrypt:ro \
-           -e tls_key=/etc/letsencrypt/live/DONT.FORGET.THIS.EITHER/privkey.pem \
-           -e tls_cert=/etc/letsencrypt/live/DONT.FORGET.THIS.EITHER/fullchain.pem \
+           -e tls_key=/etc/letsencrypt/live/NEVER.FORGET.SYSTEMS/privkey.pem \
+           -e tls_cert=/etc/letsencrypt/live/NEVER.FORGET.SYSTEMS/fullchain.pem \
            -v /opt/haraka/queue:/usr/local/haraka/queue \
            pasthelod/haraka
 ```
